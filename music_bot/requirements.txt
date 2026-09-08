@@ -1,8 +1,9 @@
 pyrogram
 tgcrypto
-pytgcalls
+py-tgcalls
 yt-dlp
 ffmpeg-python
 spotdl
 aiohttp
 motor
+ 
