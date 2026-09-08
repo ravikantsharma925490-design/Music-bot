@@ -1,4 +1,4 @@
-pyrogram
+kurigram
 tgcrypto
 py-tgcalls
 yt-dlp
@@ -6,4 +6,3 @@ ffmpeg-python
 spotdl
 aiohttp
 motor
- 
