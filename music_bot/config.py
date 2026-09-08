@@ -1,4 +1,4 @@
-d# ==============================
+# ==============================
 # TELEGRAM MUSIC BOT - CONFIG
 # ==============================
 # Local machine par chalane ke liye: neeche seedha values fill kar do.
