@@ -6,51 +6,61 @@
 # use karo (Render dashboard ke "Environment" tab me) — wahan set ki gayi
 # value hamesha yahan ki hardcoded value se PEHLE priority leti hai, isliye
 # tumhari asli keys GitHub par public nahi dikhengi.
-
+ 
 import os
-
-
+ 
+ 
 def env(key, default=""):
     """Pehle environment variable check karta hai, warna default (neeche wali value) use karta hai"""
     return os.environ.get(key, default)
-
-
+ 
+ 
 # my.telegram.org se milega (App banane par)
 API_ID = env("API_ID", "12345678")               # <-- apna API_ID daalo (number)
 API_HASH = env("API_HASH", "your_api_hash_here")  # <-- apna API_HASH daalo
-
+ 
 # BotFather se banaye gaye bot ka token
 BOT_TOKEN = env("BOT_TOKEN", "your_bot_token_here")
-
+ 
 # Assistant/Userbot account ki session string
 # (Ye account voice chat join karega, kyunki normal bots VC join nahi kar sakte)
 # Session string generate karne ke liye "generate_session.py" file chalao
 # ⚠️ Render par ye interactive script nahi chalegi — pehle apne LOCAL computer
 # par generate karke, sirf resulting string yahan/Environment Variable me daalo.
 SESSION_STRING = env("SESSION_STRING", "your_session_string_here")
-
+ 
 # Bot ka naam (logs/prefix ke liye)
 BOT_NAME = env("BOT_NAME", "MyMusicBot")
-
+ 
 # Spotify Developer Dashboard (https://developer.spotify.com/dashboard) se milega
 # Ye sirf METADATA (gaane ka naam, artist, album) fetch karne ke liye use hota hai —
 # actual audio YouTube se hi aata hai (Spotify seedha audio download allow nahi karta)
 SPOTIFY_CLIENT_ID = env("SPOTIFY_CLIENT_ID", "your_spotify_client_id_here")
 SPOTIFY_CLIENT_SECRET = env("SPOTIFY_CLIENT_SECRET", "your_spotify_client_secret_here")
-
+ 
 # ==============================
 # FORCE-SUBSCRIBE (AUTH CHANNEL / AUTH GROUP)
 # ==============================
 # Jab tak user in dono ko join nahi karega, bot ke commands kaam nahi karenge.
-# Username daalo BINA @ ke (jaise "mychannel"), ya khaali "" rakho agar
-# ye feature disable karna hai.
+# Khaali "" rakho agar ye feature disable karna hai.
+#
+# PUBLIC channel/group ho to: sirf username daalo (bina @ ke), jaise "mychannel"
+# PRIVATE channel/group ho to: username kaam nahi karega (numeric ID se link nahi
+#   banta) — iske liye AUTH_CHANNEL/AUTH_GROUP me uski numeric ID (member-check ke
+#   liye) DAALO, AUR neeche wali *_INVITE_LINK me uska invite link bhi daalo
+#   (jaise "https://t.me/+AbCdEfGhIjK") — "Join" button isi link ka use karega.
 #
 # ⚠️ Bot account (aur agar possible ho to assistant account bhi) ko is
 # channel/group ka MEMBER (ya admin) hona zaroori hai, tabhi wo membership
 # check kar payega.
-AUTH_CHANNEL = env("AUTH_CHANNEL", "")   # e.g. "mychannel"  (bina @ ke)
-AUTH_GROUP = env("AUTH_GROUP", "")       # e.g. "mygroup"    (bina @ ke)
-
+AUTH_CHANNEL = env("AUTH_CHANNEL", "")   # e.g. "mychannel" YA numeric ID jaise "-1001234567890"
+AUTH_GROUP = env("AUTH_GROUP", "")       # e.g. "mygroup"   YA numeric ID jaise "-1001234567890"
+ 
+# Sirf tab bharo jab AUTH_CHANNEL/AUTH_GROUP PRIVATE ho (numeric ID use ki ho).
+# Public username use kiya hai to ye khaali hi rehne do — zaroorat nahi.
+AUTH_CHANNEL_INVITE_LINK = env("AUTH_CHANNEL_INVITE_LINK", "")  # e.g. "https://t.me/+AbCdEfGhIjK"
+AUTH_GROUP_INVITE_LINK = env("AUTH_GROUP_INVITE_LINK", "")      # e.g. "https://t.me/+XyZ12345678"
+ 
 # ==============================
 # MONGODB DATABASE
 # ==============================
@@ -61,7 +71,7 @@ MONGO_URI = env(
     "mongodb+srv://username:password@cluster.mongodb.net/?retryWrites=true&w=majority",
 )
 DB_NAME = env("DB_NAME", "music_bot_db")
-
+ 
 # ==============================
 # LOG CHANNEL
 # ==============================
@@ -73,7 +83,7 @@ DB_NAME = env("DB_NAME", "music_bot_db")
 # ⚠️ Bot account ko is channel ka MEMBER/ADMIN hona zaroori hai taaki wo
 # wahan message bhej sake.
 LOG_CHANNEL = env("LOG_CHANNEL", "")   # e.g. "mylogschannel" ya -1001234567890
-
+ 
 # ==============================
 # START MENU LINKS (Optional)
 # ==============================
@@ -82,3 +92,4 @@ LOG_CHANNEL = env("LOG_CHANNEL", "")   # e.g. "mylogschannel" ya -1001234567890
 # khaali "" rakhne par wo button hi nahi dikhega.
 UPDATES_CHANNEL = env("UPDATES_CHANNEL", "")   # e.g. "mychannel"  (bina @ ke)
 SUPPORT_GROUP = env("SUPPORT_GROUP", "")       # e.g. "mygroup"    (bina @ ke)
+ 
